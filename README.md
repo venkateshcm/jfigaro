@@ -44,7 +44,20 @@ development is assumed to be the default.
 
 
 ### Example
+Simple Usage
 ```
 ApplicationConfiguration configuration = Figaro.configure()
 configuration.getValue("SOME_VALUE")
-``` 
+```
+
+Overriding Existing Configuration
+```
+ApplicationConfiguration configuration = Figaro.configure()
+Properties overrides = new Properties();
+String overridenValue = "hurray";
+overrides.setProperty("SOME_CONFIG", overridenValue);
+
+OverriddenApplicationConfiguration overriddenApplicationConfiguration = new OverriddenApplicationConfiguration(configure, overrides);
+
+overriddenApplicationConfiguration.getValue("SOME_CONFIG")  // output = hurray
+```
